@@ -1,0 +1,103 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    background-color: black;
+}
+
+h1{
+    font-size: 3rem;
+    font-weight: 50;
+    margin: 1rem auto 3rem;
+    text-align: center;
+    color: #ffff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.headingTodo{
+    font-weight: 50;
+    color: cyan;
+}
+
+.todoInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoInput .input{
+    padding: 0.5rem 1rem;
+    height: 1rem;
+    outline: none;
+    border: none;
+    background-color: white;
+    border-radius: 6px;
+    width: 40rem;
+    font-size: medium;
+}
+
+.todoInput .addButton{
+    outline: none;
+    border: none;
+    height: 2rem;
+    width: 2rem;
+    margin: 0 5px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: medium;
+    color: black;
+    background-color: cyan;
+    cursor: pointer;
+}
+
+.addButton:hover{
+    opacity: 0.9;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.item{
+    padding: 0.5rem ;
+    margin: 1rem;
+    border-bottom: 4px solid cyan;
+}
+
+.itemInput:disabled{
+    background: none;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    margin-right: 10rem;
+}
+.itemInput:enabled{
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    margin-right: 10rem;
+}
+
+.editButton{
+    font-size: 1.2rem;
+    margin: 0 0.75rem;
+    outline: none;
+    background: none;
+    color: cyan;
+    border: none;
+    cursor: pointer;
+}
+.delButton{
+    font-size: 1.2rem;
+    margin: 0 0.75rem;
+    outline: none;
+    background: none;
+    color: red;
+    border: none;
+    cursor: pointer;
+}
