@@ -37,7 +37,6 @@ class addItem{
         itemBox.appendChild(editButton);
         itemBox.appendChild(delButton);
 
-        console.log(input.value)
         localStorage.setItem(itemName, input.value);
 
         editButton.addEventListener('click', ()=>{this.edit(input, editButton, itemName)});
@@ -45,12 +44,8 @@ class addItem{
 
         input.addEventListener('keydown', (e)=>{
             if (e.key === "Enter"){
-                console.log("Enter")
                 if(input.disabled===false){
-                    console.log("input no")
-                    isFocused = input.is(":focused");
-                    if(isFocused){ 
-                        console.log("focused")
+                    if(input === document.activeElement){
                         this.edit(input, editButton, itemName);
                 }
             }
