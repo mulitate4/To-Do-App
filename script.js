@@ -24,8 +24,12 @@ class addItem{
         let delButton = document.createElement("button");
         delButton.innerHTML = "DEL"
         delButton.classList.add("delButton");
-        
-        let br = document.createElement("br")
+
+        // let input = document.createElement("input");
+        // input.value = item;
+        // input.disabled = true;
+        // input.classList.add("itemInput");
+        // input.type = "text";
 
         container.appendChild(itemBox)
 
@@ -33,38 +37,68 @@ class addItem{
         itemBox.appendChild(editButton);
         itemBox.appendChild(delButton);
 
-        editButton.addEventListener('click', ()=>{this.edit(input, editButton)});
-        delButton.addEventListener('click', () =>{this.delete(itemBox)});
-    }
+        console.log(input.value)
+        localStorage.setItem(itemName, input.value);
 
-    edit(input, editButton){
+        editButton.addEventListener('click', ()=>{this.edit(input, editButton, itemName)});
+        delButton.addEventListener('click', () =>{this.delete(itemBox, itemName)});
+
+        input.addEventListener('keydown', (e)=>{
+            if (e.key === "Enter"){
+                console.log("Enter")
+                if(input.disabled===false){
+                    console.log("input no")
+                    isFocused = input.is(":focused");
+                    if(isFocused){ 
+                        console.log("focused")
+                        this.edit(input, editButton, itemName);
+                }
+            }
+        }
+    });
+}
+
+    edit(input, editButton, itemName){
         input.disabled = !input.disabled;
         if (input.disabled == false){
             editButton.innerHTML = "DONE"
         }else{
             editButton.innerHTML = "EDIT"
+            localStorage.setItem(itemName, input.value)
         }
     }
 
-    delete(item){
+    delete(item, itemName){
         container.removeChild(item);
+        localStorage.removeItem(itemName)
     }
 }
 
 function check() {
-    if(inputValue != ""){
-        new addItem(inputValue.value);
-        inputValue.value = "";
+    if (typeof localStorage !== "undefined"){
+        if(inputValue.value != ""){
+            new addItem(inputValue.value);
+            inputValue.value = "";
+        }
+    }else{
+        if (document.querySelector("h2LocalStorage")!==null);
+            h2 = document.createElement("h2");
+            h2.classList.add("h2LocalStorage");
+            h2.innerHTML = "Your Device doesn't support LocalStorage!";
+            container.appendChild(h2);
     }
 }
 
 addButton.addEventListener('click', () => {
-    console.log(inputValue.value)
     check()
 });
+
 window.addEventListener('keydown', (e)=>{
-    console.log(e)
     if (e.key == "Enter"){
         check();
     }
 });
+
+Object.values(localStorage).forEach((item)=>{
+    new addItem(item)
+})
